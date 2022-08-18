@@ -1,0 +1,4 @@
+{
+    "region": ["us-east-1", "eu-west-1"],
+    "instancetype": ["m5.xlarge", "g4dn.xlarge"]
+}

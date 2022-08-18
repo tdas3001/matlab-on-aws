@@ -1,0 +1,54 @@
+[
+	{
+		"ParameterKey": "ConfirmPassword",
+		"ParameterValue": "$Password"
+	},
+	{
+		"ParameterKey": "InstanceName",
+		"ParameterValue": "MATLAB Desktop"
+	},
+	{
+		"ParameterKey": "InstanceType",
+		"ParameterValue": "$InstanceType"
+	},
+	{
+		"ParameterKey": "Password",
+		"ParameterValue": "$Password"
+	},
+	{
+		"ParameterKey": "RootVolumeSize",
+		"ParameterValue": "128"
+	},
+	{
+		"ParameterKey": "SSHKeyName",
+		"ParameterValue": "$SSHKeyName"
+	},
+	{
+		"ParameterKey": "Subnet",
+		"ParameterValue": "$Subnet"
+	},
+	{
+		"ParameterKey": "VPC",
+		"ParameterValue": "$VPC"
+	},
+	{
+		"ParameterKey":"ClientIPAddress",
+		"ParameterValue":"115.110.123.22/32"
+	},
+	{
+		"ParameterKey":"AccessProtocol",
+		"ParameterValue":"NICE DCV"
+	},
+	{
+		"ParameterKey":"EnableCloudWatch",
+		"ParameterValue":"Yes"
+	},
+	{
+		"ParameterKey": "LicenseManager",
+		"ParameterValue": "27000@1.2.3.4"
+	},
+	{
+		"ParameterKey": "AutoShutdown",
+		"ParameterValue": "After 1 hour"
+	}
+]

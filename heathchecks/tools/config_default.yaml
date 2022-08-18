@@ -1,0 +1,9 @@
+Regions:
+  - Region : us-east-1
+    SSHKeyName: refArchTest-key
+    VPC: vpc-ba7ef3dd
+    Subnet: subnet-f27e50aa
+  - Region: eu-west-1
+    SSHKeyName: pct-test-key
+    VPC: vpc-122e8a76
+    Subnet: subnet-835eeff5

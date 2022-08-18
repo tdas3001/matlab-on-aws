@@ -1,0 +1,73 @@
+# Copyright (c) 2022 The MathWorks, Inc
+
+name: Health Check Tests for MATLAB on AWS (Linux VM)
+
+on:
+  # Trigger workflow every week at 9AM UTC on Monday
+  workflow_dispatch:
+  schedule:
+    - cron: "0 9 * * 1"
+
+jobs:
+  # Generate a matrix configuration for every week
+  matrix_prep:
+    name: Matrix Preparation
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - id: set-matrix
+        # Returns a matrix in JSON format
+        run: python .github/workflows/get_matrix_json.py
+
+  run-checks:
+    name: Run Health Checks
+    needs: matrix_prep
+    runs-on: ubuntu-latest
+    strategy:
+      # Get matrix from matrix_prep node
+      matrix: ${{fromJson(needs.matrix_prep.outputs.matrix)}}
+    defaults:
+      run:
+        working-directory: ./heathchecks
+    env:
+      # Defining env variables to connect to AWS account
+      AWS_ACCESS_KEY_ID: ${{ secrets.CPIQE_AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.CPIQE_AWS_SECRET_ACCESS_KEY }}
+      REFARCH_PASSWORD: ${{ secrets.REFARCH_PASSWORD }}
+      RELEASE: ${{ matrix.release }}
+      AWS_REGION: ${{ matrix.region }}
+      INSTANCE_TYPE: ${{ matrix.instancetype }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Setup MATLAB Linux Refarch on AWS
+        id: setup
+        # Returns stack_name used by teardown step to delete stack
+        run: python setup_aws_matlab_linux.py
+
+      - name: Teardown MATLAB Linux Refarch on AWS
+        id: teardown
+        continue-on-error: true
+        run: python teardown_aws_matlab_linux.py ${{ steps.setup.outputs.stack_name }}
