@@ -31,6 +31,7 @@ jobs:
 
   run-checks:
     name: Run Health Checks
+    if: ${{ always() }}
     needs: matrix_prep
     runs-on: ubuntu-latest
     strategy:
@@ -69,5 +70,5 @@ jobs:
 
       - name: Teardown MATLAB Linux Refarch on AWS
         id: teardown
-        if: ${{ always() }}
+
         run: python teardown_aws_matlab_linux.py ${{ steps.setup.outputs.stack_name }}
