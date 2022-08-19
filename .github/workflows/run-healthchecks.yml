@@ -69,5 +69,5 @@ jobs:
 
       - name: Teardown MATLAB Linux Refarch on AWS
         id: teardown
-        continue-on-error: true
+        if: ${{ always() }}
         run: python teardown_aws_matlab_linux.py ${{ steps.setup.outputs.stack_name }}
