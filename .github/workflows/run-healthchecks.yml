@@ -31,7 +31,8 @@ jobs:
 
   run-checks:
     name: Run Health Checks
-    if: ${{ always() }}
+    # if: ${{ always() }}
+    continue-on-error: true
     needs: matrix_prep
     runs-on: ubuntu-latest
     strategy:
