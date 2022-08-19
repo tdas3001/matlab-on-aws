@@ -1,7 +1,7 @@
 [
 	{
 		"ParameterKey": "ConfirmPassword",
-		"ParameterValue": "12345"
+		"ParameterValue": "$Password"
 	},
 	{
 		"ParameterKey": "InstanceName",
