@@ -1,6 +1,6 @@
 # Copyright (c) 2022 The MathWorks, Inc
 
-name: Health Check Tests for MATLAB on AWS (Linux VM)
+name: Health Checks for MATLAB on AWS (Linux VM)
 
 on:
   # Trigger workflow every week at 9AM UTC on Monday
