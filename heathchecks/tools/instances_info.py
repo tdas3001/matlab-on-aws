@@ -18,7 +18,7 @@ def get_resource_from_stack(stack_name, region, resource_logical_id):
 def get_instance_arn(instance_id, region):
     """Get EC2 Instance Resource ARN"""
 
-    sts = boto3.client('sts')
-    account_id = sts.get_caller_identity()['Account']
-    instance_arn=f"arn:aws:ec2:{region}:{account_id}:instance/{instance_id}"
+    sts = boto3.client("sts")
+    account_id = sts.get_caller_identity()["Account"]
+    instance_arn = f"arn:aws:ec2:{region}:{account_id}:instance/{instance_id}"
     return instance_arn

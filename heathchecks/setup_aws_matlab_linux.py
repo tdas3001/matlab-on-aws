@@ -35,23 +35,6 @@ def main():
         stack_base_name=name_prefix + "refArchTest",
         extra_parameters=extra_parameters,
     )
-    instance_id = instances_info.get_resource_from_stack(
-        stack.name, region_name, "MATLABEC2Instance"
-    )
-    instance_arn = instances_info.get_instance_arn(instance_id, region_name)
-
-    # Cost Explorer Client
-    # Add a cost allocated tag for healthcheck
-    ce_client = boto3.client('ce')
-    response = ce_client.tag_resource(
-        ResourceArn='string',
-        ResourceTags=[
-            {
-                'Key': 'type',
-                'Value': 'heathcheck'
-            },
-        ]
-    )
 
 
 if __name__ == "__main__":
