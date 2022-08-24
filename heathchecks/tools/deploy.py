@@ -16,6 +16,7 @@ def deploy_stack(
     region,
     stack_base_name="refArchTest",
     extra_parameters={},
+    tags=[],
 ):
     """Deploys the stack with the parameters defined in the template parameter file"""
     stack_name = _create_stack_name(stack_base_name)
@@ -33,6 +34,7 @@ def deploy_stack(
         TemplateURL=template_url,
         Parameters=params_for_region,
         Capabilities=["CAPABILITY_IAM"],
+        Tags=tags,
     )
 
     _wait_for_create_complete(cloudformation, stack)

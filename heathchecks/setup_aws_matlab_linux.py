@@ -34,6 +34,12 @@ def main():
         region_name,
         stack_base_name=name_prefix + "refArchTest",
         extra_parameters=extra_parameters,
+        tags=[
+            {"Key": "mw-test-team", "Value": "cpi"},
+            {"Key": "mw-test-type", "Value": "healthcheck"},
+            {"Key": "mw-test-refarch", "Value": "matlab"},
+            {"Key": "mw-test-os", "Value": "linux"},
+        ],
     )
 
 
